@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="/profile" method="post" enctype="multipart/form-data">
+        <input type="file" name="avatar" />
+        <button>upload</button>
+      </form>
+      <input id="filehash"type="text">
+      <button onclick="loadDoc()">download</button>
+</body>
+    <script>
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                // document.getElementById("demo").innerHTML = this.responseText;
+                console.log(this);
+                window.open(this.responseURL);
+                }
+            };
+            console.log(document.getElementById("filehash").value)
+            xhttp.open("GET", "download/"+document.getElementById("filehash").value, true);
+            xhttp.send();
+        }
+    </script>
+</html>
